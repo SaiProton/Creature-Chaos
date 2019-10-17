@@ -1,0 +1,22 @@
+{
+    "wave1": {
+        "info": {
+            "name": "WAVE 1",
+            "desc": "ELIMINATE THE CREATURES!"
+        }
+    },
+
+    "wave2": {
+        "info": {
+            "name": "WAVE 2",
+            "desc": ""
+        }
+    },
+
+    "wave3": {
+        "info": {
+            "name": "WAVE 3",
+            "desc": "DESTROY THE EYE"
+        }
+    }
+}

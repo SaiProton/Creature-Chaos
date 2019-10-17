@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Creature Chaos</title>
+        <link rel="icon" href="../res/images/objects/damage_up.png">
+        <link rel="stylesheet" href="ChaosStyle.css">
+    </head>
+    <body>
+        <div id="grassbox">
+            <div id="startup">
+                <h1>CREATURE CHAOS</h1>
+                <ul>
+                    <li class="menuOption" onclick="start();">START</li>
+                    <li class="menuOption">HELP</li>
+                    <li class="menuOption" onclick="window.close();">EXIT</li>
+                </ul>
+            </div>
+            <div id="powerBar">
+                <div id="powerTime"></div>
+                <h1 id="powerName"></h1>
+            </div>
+            <canvas id="background" width="1000px" height="600px"></canvas>
+            <canvas id="foreground" width="1000px" height="600px"></canvas>
+            <canvas id="grassland" width="1000px" height="600px"></canvas>
+        </div>
+        <script src="global.js"></script>
+        <script src="power.js"></script>
+        <script src="player.js"></script>
+        <script src="blob.js"></script>
+        <script src="ghost.js"></script>
+        <script src="tree.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
