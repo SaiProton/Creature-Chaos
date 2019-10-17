@@ -3,6 +3,10 @@
         "info": {
             "name": "WAVE 1",
             "desc": "ELIMINATE THE CREATURES!"
+        },
+
+        "enemies": {
+            "blobs": 10
         }
     },
 
