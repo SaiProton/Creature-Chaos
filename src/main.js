@@ -10,12 +10,19 @@ let player;
 let blobs = [];
 let ghosts = [];
 
+let spawnTimer = 0;
+let blobsSpawn = 0;
+let ghostSpawn = 0;
+
 let powers = [];
 let tree;
 
 window.onload = function() {
     canvas = document.getElementById("grassland");
     ctx = canvas.getContext("2d");
+
+    waves = JSON.parse(waves);
+    console.log(waves);
     
     powerBar = document.getElementById("powerBar");
     powerTimeBar = document.getElementById("powerTime");
@@ -56,17 +63,27 @@ function gameLoop() {
 }
 
 function update() {
-    while(blobs.length < 1) {
-        blobs.push(new BigBlob());
-    }
+    // while(blobs.length < 1) {
+    //     blobs.push(new BigBlob());
+    // }
     
     player.controls(keys);
     player.update();
-    
-    while(ghosts.length < 1) {
-        ghosts.push(new Ghost(player.getHurtData()));
-        // ghosts.push(new GhostHard(player.getHurtData()));
+
+    if(!menuState) {
+        if(spawnTimer >= waves[0].wave1.enemies.delay * 60) {
+            if(spawn()) {
+                spawnTimer = 0;
+            }
+        } else {
+            spawnTimer++;
+        }
     }
+    
+    // while(ghosts.length < 1) {
+    //     ghosts.push(new Ghost(player.getHurtData()));
+    //     // ghosts.push(new GhostHard(player.getHurtData()));
+    // }
     
     for(let i = 0; i < powers.length; i++) {
         if(powers[i].decay() || player.powerDetection(powers[i].getPowerData())) {
@@ -142,7 +159,39 @@ function render() {
 function start() {
     let scroll = document.getElementById("startup");
     scroll.classList.add("exit");
+    menuState = false;
     playRandom();
+}
+
+function spawn() {
+    let randPick = Math.random();
+
+    let blobData = waves[0].wave1.enemies.blobs;
+    let ghostData = waves[0].wave1.enemies.ghosts;
+
+    if(blobsSpawn < blobData.amount && blobs.length < blobData.max &&
+    randPick < blobData.chance) {
+        let newBlob = Math.random() < blobData.big ? new BigBlob() : new Blob();
+        blobs.push(newBlob);
+        blobsSpawn++;
+        return true;
+    } else {
+        randPick -= blobData.chance;
+    }
+
+    if(ghostSpawn < ghostData.amount && ghosts.length < ghostData.max &&
+    randPick < ghostData.chance) {
+        let newGhost = Math.random() < ghostData.hard ?
+        new GhostHard(player.getHurtData()) : new Ghost(player.getHurtData());
+
+        ghosts.push(newGhost);
+        ghostSpawn++;
+        return true;
+    } else {
+        randPick -= ghostData.chance;
+    }
+
+    return false;
 }
 
 function showTrees(background, foreground) {

@@ -53,13 +53,8 @@ function circleCollision(circle1, circle2) {
     return false;
 }
 
-function toDeg(rad) {
-    return rad * 180/Math.PI;
-}
-
-function toRad(deg) {
-    return deg * Math.PI/180;
-}
+let toDeg = rad => rad * 180/Math.PI;
+let toRad = deg => deg * Math.PI/180;
 
 function getAngle(x1, y1, x2, y2) {
     let angle = -Math.atan2(y1 - y2, x1 - x2);
