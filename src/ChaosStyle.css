@@ -3,62 +3,6 @@
     src: url("../res/images/Xeliard.ttf") format("truetype");
 }
 
-@keyframes menuEntrance {
-    0% {
-        transform: translateY(-100%);
-    }
-    
-    80% {
-        transform: translateY(5%);
-    }
-    
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes menuExit {
-    0% {
-        transform: translateY(0);
-    }
-    
-    20% {
-        transform: translateY(5%);
-    }
-    
-    100% {
-        transform: translateY(-100%);
-    }
-}
-
-@keyframes powerBarEnter {
-    0% {
-        height: 0;
-        font-size: 0;
-        opacity: 0;
-    }
-    
-    100% {
-        height: 45px;
-        font-size: auto;
-        opacity: 1;
-    }
-}
-
-@keyframes powerBarExit {
-    0% {
-        height: 45px;
-        font-size: auto;
-        opacity: 1;
-    }
-    
-    100% {
-        height: 0;
-        font-size: 0;
-        opacity: 0;
-    }
-}
-
 body {
     text-align: center;
     background-image: url("../res/images/pageBackground.jpg");
@@ -104,6 +48,22 @@ body {
     list-style-type: none;
     font-size: 30px;
     font-weight: bold;
+}
+
+#waveBar {
+    animation: waveBarEnter 0.5s linear;
+    position: absolute;
+    top: 240px;
+    width: 100%;
+    height: 120px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    opacity: 0.8;
+}
+
+#waveBar > h3 {
+    color: pink;
 }
 
 #powerBar {
