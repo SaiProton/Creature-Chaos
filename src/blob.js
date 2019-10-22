@@ -255,5 +255,7 @@ class BigBlob extends Blob {
             "cherry": 0.2,
             "cherry-mini": 0
         };
+
+        this.randomStart();
     }
 }
