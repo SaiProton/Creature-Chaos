@@ -1,10 +1,10 @@
-# Creature Chaos!
+# Creature Chaos
 A top-down browser game about defeating dangerous creatures.
 
 # Controls:
 WASD to move.  
-[.] to attack.  
-[/] to roll.  
+N to attack.  
+M to roll.  
 
 # Enemies:
 CHERRY BLOBS:  
@@ -13,9 +13,16 @@ They will slowly bound over to wherever your position is.
 The large blobs will spawn two small ones when killed.  
 Thankfully, they will commonly drop health refilling cherries!  
 
-SPECTERS:  
+SPECTRES:  
 Spooky ghosts who haunt the forest, attacking any intruders.  
 Come in blue and purple variations, the purple ones being more powerful.  
 They will sneak up on you and drain your health if you're not careful!  
 They deal no knockback and take no knockback since they're incorporeal.  
-They commonly drop SUPER SPEED power ups!  
+They commonly drop super speed power-ups!  
+
+#POWER-UPS:
+Power-ups are dropped by enemies on occasion.  
+They can vary from health refilling cherries to super speed power-ups.  
+Enemies of a certain type only carry one type of power up.  
+
+--More power-ups will be added as more enemies are added!--

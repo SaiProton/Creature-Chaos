@@ -25,7 +25,7 @@ class Ghost {
         this.dying = false;
         this.dead = false;
         
-        this.damage = 1/60;
+        this.damage = 1/30;
         this.draining = false;
         
         this.ghostSprite = defineImage("../res/images/entities/spr_ghost.png");
@@ -84,7 +84,7 @@ class Ghost {
     
     hurtDetection(hit) {
         if(hit !== null) {
-            if(!this.invincible) {
+            if(!this.invincible && !this.dying) {
                 let ghostHurtArea = this.getHurtData();
                 if(circleCollision(ghostHurtArea, hit) && rectCollision(ghostHurtArea, hit)) {
                     hit.sound.play();
@@ -220,11 +220,14 @@ class Ghost {
     }
     
     showHealthBar() {
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "dimgrey";
         ctx.fillRect(this.x, this.y + this.scaledSize * 1.1, this.scaledSize, this.scaledSize / 8);
         
-        ctx.fillStyle = "green";
+        ctx.fillStyle = "red";
         ctx.fillRect(this.x, this.y + this.scaledSize * 1.1, this.scaledSize * this.health / this.maxHealth, this.scaledSize/8);
+
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(this.x, this.y + this.scaledSize * 1.1, this.scaledSize, this.scaledSize / 8);
     }
 }
 

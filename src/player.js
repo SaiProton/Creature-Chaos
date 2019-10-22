@@ -91,7 +91,7 @@ class Player {
     
     controls(keys) {
         if(!this.rolling && !this.attacking) {
-            if(keys[191]) {
+            if(keys[77]) {
                 if(this.canStartRoll) {
                     this.currentPlayer = "Roll" + this.getPlayerAnim(this.facing[0], this.facing[1]);
                     this.animFrames = this.playerSheets[this.currentPlayer].width / this.size;
@@ -103,7 +103,7 @@ class Player {
                 this.canStartRoll = true;
             }
             
-            if(keys[190]) {
+            if(keys[78]) {
                 if(this.canStartAttack) {
                     this.currentPlayer = "Slash" + this.getAttackAnim(this.facing[0], this.facing[1]);
                     this.currentWeapon = this.getAttackAnim(this.facing[0], this.facing[1]);
@@ -440,10 +440,10 @@ class Player {
     }
     
     showHealthBar(ctx) {
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "dimgrey";
         ctx.fillRect(this.hurtPosX, this.hurtPosY + this.size * 1.2, this.size, this.size / 8);
 
-        ctx.fillStyle = "green";
+        ctx.fillStyle = "lime";
         ctx.fillRect(this.hurtPosX, this.hurtPosY + this.size * 1.2, this.size * this.health / this.maxHealth, this.size / 8);
         
         ctx.strokeStyle = "black";
