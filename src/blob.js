@@ -127,7 +127,7 @@ class Blob {
     
     hurtDetection(hit) {
         if(hit !== null) {
-            if(!this.invincible) {
+            if(!this.invincible && this.health !== 0) {
                 let blobHurtArea = this.getHurtData();
                 
                 if(circleCollision(blobHurtArea, hit) && rectCollision(blobHurtArea, hit)) {
@@ -219,11 +219,14 @@ class Blob {
     showHealthBar(ctx) {
         let hb = this.getHurtData();
         
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "dimgrey";
         ctx.fillRect(hb.x, this.y + this.scaledSize, hb.width, hb.height/8);
         
-        ctx.fillStyle = "green";
+        ctx.fillStyle = "red";
         ctx.fillRect(hb.x, this.y + this.scaledSize, hb.width * this.health/this.maxHealth, hb.height/8);
+
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(hb.x, this.y + this.scaledSize, hb.width, hb.height / 8);
     }
 }
 

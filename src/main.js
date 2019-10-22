@@ -1,5 +1,8 @@
 let ctx;
 
+let waveTitle;
+let waveDesc;
+
 let soundtrack = {};
 let songs = ["Calamity", "Court", "Jaxi"];
 
@@ -10,6 +13,7 @@ let player;
 let blobs = [];
 let ghosts = [];
 
+let waveCount = 1;
 let spawnTimer = 0;
 let blobsSpawn = 0;
 let ghostSpawn = 0;
@@ -21,12 +25,15 @@ window.onload = function() {
     canvas = document.getElementById("grassland");
     ctx = canvas.getContext("2d");
 
-    waves = JSON.parse(waves);
-    console.log(waves);
+    waveTitle = document.getElementById("waveTitle");
+    waveDesc = document.getElementById("waveDesc");
     
     powerBar = document.getElementById("powerBar");
     powerTimeBar = document.getElementById("powerTime");
     powerName = document.getElementById("powerName");
+
+    waves = JSON.parse(waves);
+    console.log(waves);
     
     player = new Player();
     tree = new Tree(0, 0, 0, 0);
@@ -63,10 +70,6 @@ function gameLoop() {
 }
 
 function update() {
-    // while(blobs.length < 1) {
-    //     blobs.push(new BigBlob());
-    // }
-    
     player.controls(keys);
     player.update();
 
@@ -79,11 +82,6 @@ function update() {
             spawnTimer++;
         }
     }
-    
-    // while(ghosts.length < 1) {
-    //     ghosts.push(new Ghost(player.getHurtData()));
-    //     // ghosts.push(new GhostHard(player.getHurtData()));
-    // }
     
     for(let i = 0; i < powers.length; i++) {
         if(powers[i].decay() || player.powerDetection(powers[i].getPowerData())) {
@@ -160,14 +158,16 @@ function start() {
     let scroll = document.getElementById("startup");
     scroll.classList.add("exit");
     menuState = false;
+    startWave();
     playRandom();
 }
 
 function spawn() {
+    let waveName = "wave" + waveCount;
     let randPick = Math.random();
-
-    let blobData = waves[0].wave1.enemies.blobs;
-    let ghostData = waves[0].wave1.enemies.ghosts;
+    
+    let blobData = waves[0][waveName].enemies.blobs;
+    let ghostData = waves[0][waveName].enemies.ghosts;
 
     if(blobsSpawn < blobData.amount && blobs.length < blobData.max &&
     randPick < blobData.chance) {
@@ -192,6 +192,16 @@ function spawn() {
     }
 
     return false;
+}
+
+function startWave() {
+    let waveName = "wave" + waveCount;
+    waveTitle.innerHTML = waves[0][waveName].info.name;
+    waveDesc.innerHTML = waves[0][waveName].info.desc;
+    waveBar.style.animation = "none";
+    waveBar.offsetHeight;
+    waveBar.style.animation = "waveIntro 4s linear";
+    waveCount++;
 }
 
 function showTrees(background, foreground) {

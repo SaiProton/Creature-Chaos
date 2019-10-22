@@ -51,19 +51,22 @@ body {
 }
 
 #waveBar {
-    animation: waveBarEnter 0.5s linear;
+    animation: none;
     position: absolute;
-    top: 240px;
+    top: 300px;
     width: 100%;
-    height: 120px;
+    height: 0;
+    font-size: 0;
+    border: solid black;
+    border-width: 5px 0 5px 0;
     text-align: center;
-    background-color: black;
-    color: white;
-    opacity: 0.8;
+    background-color: #f5d745;
+    color: black;
+    opacity: 0;
 }
 
-#waveBar > h3 {
-    color: pink;
+#waveBar > h2 {
+    color: #550;
 }
 
 #powerBar {

@@ -54,30 +54,32 @@
     }
 }
 
-@keyframes waveBarEnter {
-    from {
+@keyframes waveIntro {
+    0% {
         height: 0;
         top: 300px;
         font-size: 0;
+        opacity: 0;
     }
-    
-    to {
-        height: 120px;
-        top: 240px;
-        font-size: auto;
-    }
-}
 
-@keyframes waveBarExit {
-    from {
+    10% {
         height: 120px;
         top: 240px;
-        font-size: auto;
+        font-size: 1em;
+        opacity: 1;
     }
-    
-    to {
+
+    90% {
+        height: 120px;
+        top: 240px;
+        font-size: 1em;
+        opacity: 1;
+    }
+
+    100% {
         height: 0;
         top: 300px;
         font-size: 0;
+        opacity: 0;
     }
 }
