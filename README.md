@@ -20,9 +20,9 @@ They will sneak up on you and drain your health if you're not careful!
 They deal no knockback and take no knockback since they're incorporeal.  
 They commonly drop super speed power-ups!  
 
-#POWER-UPS:
+# POWER-UPS:
 Power-ups are dropped by enemies on occasion.  
 They can vary from health refilling cherries to super speed power-ups.  
 Enemies of a certain type only carry one type of power up.  
 
---More power-ups will be added as more enemies are added!--
+More power-ups will be added as more enemies are added!
