@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Xeliard";
-    src: url("../res/images/Xeliard.ttf") format("truetype");
+    src: url("res/images/Xeliard.ttf") format("truetype");
 }
 
 body {
     text-align: center;
-    background-image: url("../res/images/pageBackground.jpg");
+    background-image: url("res/images/pageBackground.jpg");
     background-size: 400px;
     font-family: "Xeliard";
 }
@@ -30,7 +30,7 @@ body {
     padding: 0 35px 0 35px;
     height: 600px;
     z-index: 10;
-    background-image: url("../res/images/menuBackground.png");
+    background-image: url("res/images/menuBackground.png");
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -109,7 +109,7 @@ body {
 
 #background {
     position: absolute;
-    background-image: url("../res/images/grassland.png");
+    background-image: url("res/images/grassland.png");
     background-repeat: repeat-x;
     background-size: 600px;
     z-index: -1;

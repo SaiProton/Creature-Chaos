@@ -1,6 +1,6 @@
 class Tree {
     constructor(size, row, xPos, yPos) {
-        this.spriteSheet = defineImage("../res/images/objects/trees.png");
+        this.spriteSheet = defineImage("res/images/objects/trees.png");
         this.sheetHeight = 384;
         
         this.spriteWidth;

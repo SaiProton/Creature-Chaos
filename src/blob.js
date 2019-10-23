@@ -29,11 +29,11 @@ class Blob {
         this.invincible = false;
         this.dead = false;
         
-        this.path = "../res/images/entities/spr_";
+        this.path = "res/images/entities/spr_";
         this.animNames = ["blob", "blob_death"];
         this.blobSheets = initAnimations(this.path, this.animNames);
         
-        this.eyes = defineImage("../res/images/entities/eyes.png");
+        this.eyes = defineImage("res/images/entities/eyes.png");
         this.eyesX = 0;
         this.eyesY = 0;
         this.eyeOffset = 3;
@@ -243,7 +243,7 @@ class BigBlob extends Blob {
         this.animNames = ["blob_big", "blob_big_death"];
         this.blobSheets = initAnimations(this.path, this.animNames);
         
-        this.eyes = defineImage("../res/images/entities/eyes_big.png");
+        this.eyes = defineImage("res/images/entities/eyes_big.png");
         this.eyeOffset = 6;
         
         this.currentAnim = this.animNames[0];

@@ -38,7 +38,7 @@ window.onload = function() {
     player = new Player();
     tree = new Tree(0, 0, 0, 0);
     
-    soundtrack = initSounds("../res/audio/music/", songs, ".mp3");
+    soundtrack = initSounds("res/audio/music/", songs, ".mp3");
 
     window.addEventListener("keydown", function(e) {
         keys[e.keyCode] = true; 

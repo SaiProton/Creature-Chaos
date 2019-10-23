@@ -28,10 +28,10 @@ class Ghost {
         this.damage = 1/30;
         this.draining = false;
         
-        this.ghostSprite = defineImage("../res/images/entities/spr_ghost.png");
-        this.spawnDeath = defineImage("../res/images/entities/spr_ghost_death.png");
-        this.ambientSprite = defineImage("../res/images/effects/ghostAmb.png");
-        this.drainSprite = defineImage("../res/images/effects/ghostDrain.png");
+        this.ghostSprite = defineImage("res/images/entities/spr_ghost.png");
+        this.spawnDeath = defineImage("res/images/entities/spr_ghost_death.png");
+        this.ambientSprite = defineImage("res/images/effects/ghostAmb.png");
+        this.drainSprite = defineImage("res/images/effects/ghostDrain.png");
         
         this.SDFrames = 5;
         
@@ -244,9 +244,9 @@ class GhostHard extends Ghost {
         
         this.damage *= 2;
         
-        this.ghostSprite = defineImage("../res/images/entities/spr_ghost_hard.png");
-        this.spawnDeath = defineImage("../res/images/entities/spr_ghost_hard_death.png");
-        this.ambientSprite = defineImage("../res/images/effects/ghostHardAmb.png");
+        this.ghostSprite = defineImage("res/images/entities/spr_ghost_hard.png");
+        this.spawnDeath = defineImage("res/images/entities/spr_ghost_hard_death.png");
+        this.ambientSprite = defineImage("res/images/effects/ghostHardAmb.png");
         
         this.effectOffsetX = 35;
         this.effectOffsetY = 35;

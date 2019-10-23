@@ -22,8 +22,8 @@ class Player {
         this.maxPowerTime = 10 * 60;
         this.powerTimer = 0;
 
-        this.playerPath = "../res/images/player/character/Character_";
-        this.weaponPath = "../res/images/player/weapon/Sword_";
+        this.playerPath = "res/images/player/character/Character_";
+        this.weaponPath = "res/images/player/weapon/Sword_";
         
         this.playerNames = ["Down", "DownLeft", "DownRight", "Left", "Right", "RollDown", "RollDownLeft", "RollDownRight", "RollLeft", "RollRight", "RollUp", "RollUpLeft", "RollUpRight", "SlashDownLeft", "SlashDownRight", "SlashUpLeft", "SlashUpRight", "Up", "UpLeft", "UpRight"];
         
@@ -37,23 +37,23 @@ class Player {
         
         this.sounds = {
             slash: [
-                new Audio("../res/audio/sfx/slash1.wav"),
-                new Audio("../res/audio/sfx/slash2.wav"),
-                new Audio("../res/audio/sfx/slash3.wav")
+                new Audio("res/audio/sfx/slash1.wav"),
+                new Audio("res/audio/sfx/slash2.wav"),
+                new Audio("res/audio/sfx/slash3.wav")
             ],
             
             hit: {
-                hit1: new Audio("../res/audio/sfx/hit1.wav"),
-                hit2: new Audio("../res/audio/sfx/hit2.wav")
+                hit1: new Audio("res/audio/sfx/hit1.wav"),
+                hit2: new Audio("res/audio/sfx/hit2.wav")
             },
             
-            hurt: new Audio("../res/audio/sfx/hurt.wav"),
+            hurt: new Audio("res/audio/sfx/hurt.wav"),
             
             powers: {
-                damage_up: new Audio("../res/audio/sfx/damage_up.wav"),
-                speed_up: new Audio("../res/audio/sfx/speed_up.wav"),
-                cherry: new Audio("../res/audio/sfx/cherry.wav"),
-                "cherry-mini": new Audio("../res/audio/sfx/cherry-mini.wav")
+                damage_up: new Audio("res/audio/sfx/damage_up.wav"),
+                speed_up: new Audio("res/audio/sfx/speed_up.wav"),
+                cherry: new Audio("res/audio/sfx/cherry.wav"),
+                "cherry-mini": new Audio("res/audio/sfx/cherry-mini.wav")
             }
         };
         

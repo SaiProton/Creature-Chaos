@@ -8,7 +8,7 @@ class Power {
         
         this.type = type;
         
-        this.path = "../res/images/objects/";
+        this.path = "res/images/objects/";
         this.sprite = defineImage(this.path + this.type + ".png");
         
         this.decayTimer = 10 * 60;
