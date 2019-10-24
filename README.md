@@ -28,6 +28,8 @@ Enemies of a certain type only carry one type of power up.
 
 More power-ups will be added as more enemies are added!  
 
-[Player animations source](https://gamekrazzy.itch.io/8-direction-top-down-character)
-[Creature animations source](https://maytch.itch.io/free-16x16-pixel-art-8-directional-characters)
-[Music source](https://www.dropbox.com/sh/lu6gtp4e5f6uhma/AAAZUaQrqeT7rKgtJXC8C9GYa?dl=0)
+[Itch.io Page](https://saiproton.itch.io/)  
+------------------------------------------
+[Player animations source](https://gamekrazzy.itch.io/8-direction-top-down-character)  
+[Creature animations source](https://maytch.itch.io/free-16x16-pixel-art-8-directional-characters)  
+[Music source](https://www.dropbox.com/sh/lu6gtp4e5f6uhma/AAAZUaQrqeT7rKgtJXC8C9GYa?dl=0)  
