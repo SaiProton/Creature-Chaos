@@ -30,7 +30,6 @@ class Ghost {
         
         this.ghostSprite = defineImage("res/images/entities/spr_ghost.png");
         this.spawnDeath = defineImage("res/images/entities/spr_ghost_death.png");
-        this.ambientSprite = defineImage("res/images/effects/ghostAmb.png");
         this.drainSprite = defineImage("res/images/effects/ghostDrain.png");
         
         this.SDFrames = 5;
@@ -52,7 +51,7 @@ class Ghost {
         
         this.dropChances = {
             "damage_up": 0,
-            "speed_up": 0.2,
+            "speed_up": 0.1,
             "cherry": 0,
             "cherry-mini": 0
         };
@@ -146,17 +145,19 @@ class Ghost {
             this.findFacing();
         }
 
-        this.effectFrame++;
-        this.effectCol += this.effectSize;
+        if(this.draining) {
+            this.effectFrame++;
+            this.effectCol += this.effectSize;
         
-        if(this.effectFrame % 8 === 0) {
-            this.effectRow += this.effectSize;
-            this.effectCol = 0;
-        } else if(this.effectFrame >= this.effectAmount) {
-            this.effectFrame = 0;
-            this.effectCol = 0;
-            this.effectRow = 0;
-        }
+            if(this.effectFrame % 8 === 0) {
+                this.effectRow += this.effectSize;
+                this.effectCol = 0;
+            } else if(this.effectFrame >= this.effectAmount) {
+                this.effectFrame = 0;
+                this.effectCol = 0;
+                this.effectRow = 0;
+            }
+        }   
     }
     
     findFacing() {
@@ -202,10 +203,6 @@ class Ghost {
         // ctx.arc(this.x + this.scaledSize / 2, this.y + this.scaledSize / 2, this.scaledSize / 3.5, 0, 2 * Math.PI);
         // ctx.fill();
         
-        // ctx.drawImage(this.ambientSprite, this.effectCol, this.effectRow,
-        // this.effectSize, this.effectSize, this.x - this.effectOffsetX, this.y - this.effectOffsetY,
-        // this.effectSize, this.effectSize);
-        
         if(this.spawning || this.dying) {
             ctx.drawImage(this.spawnDeath, this.slice, 0,
             this.size, this.size, this.x, this.y, this.scaledSize, this.scaledSize);
@@ -246,11 +243,10 @@ class GhostHard extends Ghost {
         
         this.ghostSprite = defineImage("res/images/entities/spr_ghost_hard.png");
         this.spawnDeath = defineImage("res/images/entities/spr_ghost_hard_death.png");
-        this.ambientSprite = defineImage("res/images/effects/ghostHardAmb.png");
         
         this.effectOffsetX = 35;
         this.effectOffsetY = 35;
         
-        this.dropChances.speed_up = 0.4;
+        this.dropChances.speed_up = 0.2;
     }
 }
