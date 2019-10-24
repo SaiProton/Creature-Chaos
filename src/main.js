@@ -10,8 +10,11 @@ let keys = {};
 let menuState = true;
 
 let player;
-let blobs = [];
-let ghosts = [];
+
+let enemies = {
+    "blobs": [],
+    "ghosts": []
+};
 
 let waveCount = 1;
 let spawnTimer = 0;
@@ -33,8 +36,7 @@ window.onload = function() {
     powerName = document.getElementById("powerName");
 
     waves = JSON.parse(waves);
-    console.log(waves);
-    
+
     player = new Player();
     tree = new Tree(0, 0, 0, 0);
     
@@ -72,10 +74,12 @@ function gameLoop() {
 function update() {
     player.controls(keys);
     player.update();
+    
+    let waveName = "wave" + waveCount;
 
     if(!menuState) {
-        if(spawnTimer >= waves[0].wave1.enemies.delay * 60) {
-            if(spawn()) {
+        if(spawnTimer >= waves[0][waveName].enemies.delay * 60) {
+            if(spawn(waveName)) {
                 spawnTimer = 0;
             }
         } else {
@@ -89,46 +93,33 @@ function update() {
         }
     }
     
-    for(let i = 0; i < blobs.length; i++) {
-        blobs[i].update(player.getHurtData());
-        blobs[i].hurtDetection(player.getHitData());
-        
-        if(blobs[i].dead) {
-            if(blobs[i] instanceof BigBlob) {
-                blobs.push(new Blob(blobs[i].getHurtData()));
-                blobs.push(new Blob(blobs[i].getHurtData()));
+    for(let e in enemies) {
+        for(let i = 0; i < enemies[e].length; i++) {
+            enemies[e][i].update(player.getHurtData());
+            enemies[e][i].hurtDetection(player.getHitData());
+            
+            if(enemies[e][i].dead) {
+                if(enemies[e][i] instanceof BigBlob) {
+                    enemies.blobs.push(new Blob(enemies[e][i].getHurtData()));
+                    enemies.blobs.push(new Blob(enemies[e][i].getHurtData()));
+                }
+                
+                let drop = enemies[e][i].determineDrop();
+                
+                if(drop) {
+                    powers.push(new Power(enemies[e][i].x, enemies[e][i].y, drop));
+                }
+                
+                enemies[e].splice(i, 1);
             }
-            
-            let drop = blobs[i].determineDrop();
-            
-            if(drop) {
-                powers.push(new Power(blobs[i].x, blobs[i].y, drop));
-            }
-            
-            blobs.splice(i, 1);
         }
     }
     
-    for(let i = 0; i < ghosts.length; i++) {
-        ghosts[i].update(player.getHurtData());
-        ghosts[i].hurtDetection(player.getHitData());
-        
-        if(ghosts[i].dead) {
-            let drop = ghosts[i].determineDrop();
-            
-            if(drop) {
-                powers.push(new Power(ghosts[i].x, ghosts[i].y, drop));
-            }
-            
-            ghosts.splice(i, 1);
-        }
-    }
-    
-    for(let b of blobs) {
+    for(let b of enemies.blobs) {
         player.hurtDetection(b.getHurtData());
     }
 
-    for(let g of ghosts) {
+    for(let g of enemies.ghosts) {
         g.draining = player.hurtDetection(g.getHurtData()) && !g.dying;
     }
 }
@@ -136,14 +127,11 @@ function update() {
 function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    for(let b of blobs) {
-        b.animate();
-        b.render(ctx);
-    }
-    
-    for(let g of ghosts) {
-        g.animate();
-        g.render(ctx);
+    for(let e in enemies) {
+        for(let i of enemies[e]) {
+            i.animate();
+            i.render(ctx);
+        }
     }
     
     for(let p of powers) {
@@ -162,29 +150,27 @@ function start() {
     playRandom();
 }
 
-function spawn() {
-    let waveName = "wave" + waveCount;
+function spawn(waveName) {
     let randPick = Math.random();
     
     let blobData = waves[0][waveName].enemies.blobs;
     let ghostData = waves[0][waveName].enemies.ghosts;
 
-    if(blobsSpawn < blobData.amount && blobs.length < blobData.max &&
+    if(blobsSpawn < blobData.amount && enemies.blobs.length < blobData.max &&
     randPick < blobData.chance) {
         let newBlob = Math.random() < blobData.big ? new BigBlob() : new Blob();
-        blobs.push(newBlob);
+        enemies.blobs.push(newBlob);
         blobsSpawn++;
         return true;
     } else {
         randPick -= blobData.chance;
     }
 
-    if(ghostSpawn < ghostData.amount && ghosts.length < ghostData.max &&
+    if(ghostSpawn < ghostData.amount && enemies.ghosts.length < ghostData.max &&
     randPick < ghostData.chance) {
         let newGhost = Math.random() < ghostData.hard ?
         new GhostHard(player.getHurtData()) : new Ghost(player.getHurtData());
-
-        ghosts.push(newGhost);
+        enemies.ghosts.push(newGhost);
         ghostSpawn++;
         return true;
     } else {
