@@ -124,6 +124,10 @@ class Ghost {
             }
         }
     }
+
+    collisionDetection(enemies, index) {
+        
+    }
     
     animate() {
         if(this.dying) {

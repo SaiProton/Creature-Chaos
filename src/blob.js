@@ -95,7 +95,7 @@ class Blob {
                 this.bound();
             }
         } else {
-            this.speed -= this.slowRate;
+            this.speed -= this.speed - this.slowRate < 0 ? 0 : this.slowRate;
         }
 
         this.angle = -getAngle(idealX, idealY, this.x, this.y);
@@ -121,8 +121,21 @@ class Blob {
             this.launchY = this.launchY + this.slowRate;
         }
         
-        this.launchX = Math.abs(this.launchX) < 0.1 ? 0 : this.launchX;
-        this.launchY = Math.abs(this.launchY) < 0.1 ? 0 : this.launchY;
+        this.launchX = Math.abs(this.launchX) < this.slowRate ? 0 : this.launchX;
+        this.launchY = Math.abs(this.launchY) < this.slowRate ? 0 : this.launchY;
+    }
+
+    collisionDetection(enemies, index) {
+        let blobHurtArea = this.getHurtData();
+
+        for(let e in enemies) {
+            for(let i = index+1; i < enemies[e].length; i++) {
+                let enemyHurtArea = enemies[e][i].getHurtData();
+                if(circleCollision(blobHurtArea, enemyHurtArea)) {
+                    console.log("Hello, operator. I'd like to report a bruh moment");
+                }
+            }
+        }
     }
     
     hurtDetection(hit) {

@@ -36,6 +36,7 @@ window.onload = function() {
     powerName = document.getElementById("powerName");
 
     waves = JSON.parse(waves);
+    console.log(waves);
 
     player = new Player();
     tree = new Tree(0, 0, 0, 0);
@@ -96,6 +97,7 @@ function update() {
     for(let e in enemies) {
         for(let i = 0; i < enemies[e].length; i++) {
             enemies[e][i].update(player.getHurtData());
+            enemies[e][i].collisionDetection(enemies, i);
             enemies[e][i].hurtDetection(player.getHitData());
             
             if(enemies[e][i].dead) {
@@ -187,7 +189,6 @@ function startWave() {
     waveBar.style.animation = "none";
     waveBar.offsetHeight;
     waveBar.style.animation = "waveIntro 4s linear";
-    waveCount++;
 }
 
 function showTrees(background, foreground) {
