@@ -24,7 +24,7 @@ let ghostSpawn = 0;
 let powers = [];
 let tree;
 
-window.onload = function() {
+window.onload = () => {
     canvas = document.getElementById("grassland");
     ctx = canvas.getContext("2d");
 
@@ -43,15 +43,10 @@ window.onload = function() {
     
     soundtrack = initSounds("res/audio/music/", songs, ".mp3");
 
-    window.addEventListener("keydown", function(e) {
-        keys[e.keyCode] = true; 
-    });
+    window.addEventListener("keydown", e => keys[e.keyCode] = true);
+    window.addEventListener("keyup", e => keys[e.keyCode] = false);
     
-    window.addEventListener("keyup", function(e) {
-        keys[e.keyCode] = false; 
-    });
-    
-    tree.spriteSheet.onload = function() {
+    tree.spriteSheet.onload = () => {
         let back = document.getElementById("background").getContext("2d");
         let fore = document.getElementById("foreground").getContext("2d");
         showTrees(back, fore);
@@ -89,9 +84,7 @@ function update() {
     }
     
     for(let i = 0; i < powers.length; i++) {
-        if(powers[i].decay() || player.powerDetection(powers[i].getPowerData())) {
-            powers.splice(i, 1);
-        }
+        (powers[i].decay() || player.powerDetection(powers[i].getPowerData())) && powers.splice(i, 1);
     }
     
     for(let e in enemies) {
@@ -107,9 +100,7 @@ function update() {
                 
                 let drop = enemies[e][i].determineDrop();
                 
-                if(drop) {
-                    powers.push(new Power(enemies[e][i].x, enemies[e][i].y, drop));
-                }
+                drop && powers.push(new Power(enemies[e][i].x, enemies[e][i].y, drop));
                 
                 enemies[e].splice(i, 1);
             }
