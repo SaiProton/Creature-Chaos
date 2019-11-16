@@ -13,7 +13,8 @@ let player;
 
 let enemies = {
     "blobs": [],
-    "ghosts": []
+    "ghosts": [],
+    "minotaurs": []
 };
 
 let waveCount = 0;
@@ -148,6 +149,10 @@ function spawn() {
     
     let blobData = waves[0][waveName].enemies.blobs;
     let ghostData = waves[0][waveName].enemies.ghosts;
+
+    if(enemies.minotaurs.length === 0) {
+        enemies.minotaurs.push(new Minotaur());
+    }
 
     if(blobsSpawn < blobData.amount && enemies.blobs.length < blobData.max &&
     randPick < blobData.chance) {
